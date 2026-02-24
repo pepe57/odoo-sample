@@ -375,7 +375,7 @@ Ce champ fonction peut être utile pr débugger :
         <templates>
             <!-- You can put t-if="" on fields to have a conditional display
             REMEMBER : t-if have JAVASCRIPT syntax, not python syntax
-            and, to access a value, you must use record.field_name.raw_value
+                    and, to access a value, you must use record.field_name.raw_value
             -->
         </templates>
     </field>

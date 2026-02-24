@@ -58,3 +58,6 @@ pay.destination_account_id = self.env['account.account'].with_company(pay.compan
                         ('account_type', '=', 'asset_receivable'),
                         ('deprecated', '=', False),
                     ], limit=1)
+
+# To convert from tree to list:
+./odoo-bin upgrade_code   --addons-path $PATH --from 17.0

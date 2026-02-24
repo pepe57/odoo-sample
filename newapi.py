@@ -589,6 +589,9 @@ class ProductCode(models.Model):
         "CHECK(char_length(COALESCE(code_prefix_start, '')) = char_length(COALESCE(code_prefix_end, '')))",
         'The length of the starting and the ending code prefix must be the same',
     )
+    _name_unique = models.UniqueIndex(
+        "(name) WHERE active IS TRUE",
+        "Another entry with the same name exists")
 
     @api.multi
     def my_button(self):
@@ -1296,3 +1299,7 @@ if hasattr(self, f"_prepare_cell_data_{cell_type}"):
 # Remove all kinds of spaces in string (including non-breakable space)
 zipcode = ' 48 250 '
 zipcode_no_spaces = "".join(x for x in zipcode if not x.isspace())
+
+
+# le 2e arg est la syntaxe relativedelta
+fields.Date.add(fields.Date.context_today(self), days=7)

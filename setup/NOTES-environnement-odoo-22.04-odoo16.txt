@@ -1,5 +1,5 @@
-INSTALLATION Odoo v16 sur Ubuntu 22.04 et 24.04 LTS
-===================================================
+INSTALLATION Odoo v16/v18 sur Ubuntu 22.04 et 24.04 LTS
+========================================================
 
 LAST MINUTE bug https://github.com/odoo/odoo/issues/187021  sur odoo 16:
 modifier requirements.txt pour mettre :
@@ -23,7 +23,7 @@ sudo apt install libcups2-dev
 
 TODO intégrer : Pour le PDF des lots :
 
-sudo apt install libcairo2-dev pkg-config python3-dev
+sudo apt install libcairo2-dev pkg-config
 pip install rlPyCairo
 
 Facultatif mais conseillé sur tout serveur:
@@ -58,6 +58,8 @@ Librairies python
 =================
 
 SI recours à deadsnake, par exemple pour avoir python3.10 sur ubuntu 24.04 :
+
+sudo add-apt-repository ppa:deadsnakes/ppa
 
 sudo apt install python3.10-dev python3.10-distutils
 

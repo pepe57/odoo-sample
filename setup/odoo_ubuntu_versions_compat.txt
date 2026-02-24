@@ -1,0 +1,13 @@
+Python:
+Ubuntu 24.04 (noble): 3.12
+Ubuntu 22.04 (jammy) : 3.10
+Ubuntu 20.04 (focal) : 3.8
+
+
+18 : ubuntu 24.04 python natif
+
+16 : ubuntu 24.04 python natif
+
+14 :
+. ubuntu 22.04 python natif
+. ubuntu 24.04 avec python 3.10 deadsnake

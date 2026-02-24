@@ -1,0 +1,61 @@
+https://github.com/OCA/maintainer-tools/wiki/Migration-to-version-19.0
+
+git checkout origin/19.0 -b 19.0-mig-$module
+git format-patch --keep-subject --stdout origin/19.0..origin/18.0 -- $module | git am -3 --keep
+pre-commit run -a
+git add -A
+git commit -m "[IMP] $module: pre-commit auto fixes"  --no-verify  # it is important to do all formatting in one commit the first time
+
+res.users, ir.ui.view, ir.ui.menu, ir.actions, ir.actions.report and website.page.properties : groups_id => group_ids
+
+
+account.account :retrait champ 'deprecated'
+product.template : retrait de 'uom_po_id' (déplacé dans product.supplierinfo, champ 'product_uom_id') et ajout de 'uom_ids', qui sont les unités dans lesquelles ont peut vendre
+stock.move : retrait 'name'
+
+_check_length_prefix = models.Constraint(
+        "CHECK(char_length(COALESCE(code_prefix_start, '')) = char_length(COALESCE(code_prefix_end, '')))",
+        'The length of the starting and the ending code prefix must be the same',
+    )
+
+_name_unique = models.UniqueIndex(
+    "(name) WHERE active IS TRUE",
+    "Another entry with the same name exists")
+
+function search de computed non-store field : retourne domain
+
+mail.template : <field name="use_default_to" eval="False"/>
+
+from odoo.fields import Domain
+Domain([])
+Domain("id", "in", settlements.ids)
+Domain([('foo', '=', 1), ('bar', 'in', [1, 2])])
+
+domain = dom1 & dom2  (ET)
+domain = dom1 | dom2  # OR
+d = Domain([('code', '=', 'FR')])
+d &= Domain('phone_code', '=', '33')
+dom = Domain.AND(dom, [('tutu', '=', 'toto')])
+Pour initialiser un domain vide : Domain.FALSE (l10n_fr_das2)
+Domain('moment', '>', 'now -5M')  # = datetime.now() - relativedelta(minutes=5)
+Domain('moment', '>=', '=monday -1w')  # après lundi dernier
+~dom : negative
+itérer sur domain:
+domain.map_conditions(
+    lambda cond: Domain.False if cond.field_exp == 'foo' else cond)
+
+==============
+
+SI OUBLI v16/v17 :
+- read_group => _read_group
+- ajout ACL 1,0,0,0 pour account.group_account_readonly
+- check_company=True
+- date en vue search : <filter string="Deposit Date" name="deposit_date" date="deposit_date"/>
+- (0, 0, {}) =>Command.create/set
+- ir.rule : 
+
+=============
+
+Main Datamodel changes :
+- removal of res.partner/title
+- removal of res.partner/mobile

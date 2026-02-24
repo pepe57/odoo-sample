@@ -50,6 +50,13 @@
 </record>
 
 
+<t t-if="doc.partner_shipping_id == doc.partner_invoice_id">
+    Invoicing and Shipping Address:
+</t>
+<t t-else="">
+    Invoicing Address:
+</t>
+
 Variations (mail/models/mail_render_mixin.py method _render_eval_context) :
 user
 ctx
