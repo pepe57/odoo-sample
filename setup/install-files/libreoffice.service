@@ -7,7 +7,8 @@ Type=simple
 User=odoo
 Group=odoo
 ExecStart=nice -n 10 /usr/lib/libreoffice/program/soffice.bin --nologo --norestore --invisible --headless --nolockcheck --nodefault --accept="socket,host=localhost,port=8997;urp;"
-stdout_logfile=/var/log/odoo/libreoffice.log
+StandardOutput=append:/var/log/odoo/libreoffice.log
+StandardError=append:/var/log/odoo/libreoffice-error.log
 KillMode=mixed
 Restart=always
 # number of seconds to attempt restart after failure
